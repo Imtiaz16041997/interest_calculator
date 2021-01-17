@@ -27,14 +27,17 @@ import 'package:flutter/material.dart';
       @override
       Widget build(BuildContext context) {
         // TODO: implement build
-            return Scaffold(resizeToAvoidBottomPadding: false,
-
+            return Scaffold(
+              resizeToAvoidBottomPadding: false,
               appBar: AppBar(
                title: Text('Interest Calculator'),
               ),
+
+
+
               body: Container(
                 margin: EdgeInsets.all(_minimumPadding*2),
-                child: Column(
+                child: ListView(
                   children: <Widget>[
                       //Calling the Imageasset
                     getImageAsset(),
@@ -54,6 +57,8 @@ import 'package:flutter/material.dart';
                       ),
                       )),
 
+
+
                     Padding(
                         padding: EdgeInsets.only(top: _minimumPadding,bottom: _minimumPadding),
                         child: TextField(
@@ -68,6 +73,8 @@ import 'package:flutter/material.dart';
                               )
                           ),
                         )),
+
+
 
                     //for Row
                     Padding (
@@ -115,6 +122,42 @@ import 'package:flutter/material.dart';
                       ],
 
                     )),
+
+
+                      //Raised Button
+                    Padding(
+                      padding: EdgeInsets.only(bottom: _minimumPadding,top: _minimumPadding),
+                      child: Row(children: <Widget>[
+
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text('Calculate'),
+                          onPressed: (){
+
+                          },
+                        ),
+                      ),
+
+
+                      Expanded(
+                        child: RaisedButton(
+                          child: Text('Reset'),
+                          onPressed: (){
+
+                          },
+                        ),
+                      ),
+
+
+                    ],)),
+
+                        // add a textview
+                        Padding(
+                          padding: EdgeInsets.all(_minimumPadding * 2),
+                          child: Text('Todo Text'),
+                        )
+
+
 
                   ],
                 ),
