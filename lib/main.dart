@@ -65,10 +65,15 @@ class _SIFormState extends State<SIForm> {
                 Padding(
                     padding: EdgeInsets.only(
                         top: _minimumPadding, bottom: _minimumPadding),
-                    child: TextField(
+                    child: TextFormField(
                       keyboardType: TextInputType.number,
                       style: textStyle,
                       controller: principalController,
+                      validator: (String value){
+                        if(value.isEmpty){
+                          return 'Please enter principal amount';
+                        }
+                      },
                       //Design the TextField
                       decoration: InputDecoration(
                           labelText: 'Principal',
