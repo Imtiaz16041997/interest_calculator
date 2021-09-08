@@ -79,6 +79,10 @@ class _SIFormState extends State<SIForm> {
                           labelText: 'Principal',
                           hintText: 'Enter a principal e.g 12000',
                           labelStyle: textStyle,
+                          errorStyle:TextStyle(
+                          color: Colors.yellowAccent,
+                          fontSize: 15.0
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
@@ -87,15 +91,24 @@ class _SIFormState extends State<SIForm> {
                 Padding(
                     padding: EdgeInsets.only(
                         top: _minimumPadding, bottom: _minimumPadding),
-                    child: TextField(
+                    child: TextFormField(
                       keyboardType: TextInputType.number,
                       style: textStyle,
                       controller: roiController,
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return 'Please enter rate of interest';
+                        }
+                      },
                       //Design the TextField
                       decoration: InputDecoration(
                           labelText: 'Rate of Interest',
                           hintText: 'In percent',
                           labelStyle: textStyle,
+                          errorStyle:TextStyle(
+                              color: Colors.yellowAccent,
+                              fontSize: 15.0
+                          ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
@@ -108,15 +121,24 @@ class _SIFormState extends State<SIForm> {
                     child: Row(
                       children: <Widget>[
                         Expanded(
-                            child: TextField(
+                            child: TextFormField(
                           keyboardType: TextInputType.number,
                           style: textStyle,
                           controller: termController,
+                              validator: (String value) {
+                                if (value.isEmpty) {
+                                  return 'Please enter time';
+                                }
+                              },
                           //Design the TextField
                           decoration: InputDecoration(
                               labelText: 'Term',
                               hintText: 'Time in Years',
                               labelStyle: textStyle,
+                              errorStyle:TextStyle(
+                              color: Colors.yellowAccent,
+                              fontSize: 15.0
+                              ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0),
                               )),
@@ -161,7 +183,9 @@ class _SIFormState extends State<SIForm> {
                             ),
                             onPressed: () {
                               setState(() {
-                                this.displayResult = _calculateTotalReturns();
+                                if (_formKey.currentState.validate()) {
+                                  this.displayResult = _calculateTotalReturns();
+                                }
                               });
                             },
                           ),
